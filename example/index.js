@@ -153,7 +153,7 @@ var Dropdown = BemReact.createClass({
                 {
                     block : Button,
                     key : 'b',
-                    disabled : this.state.disabled,
+                    disabled : this.props.disabled,
                     text : 'dropdown-button',
                     onClick : this._onButtonClick
                 },
