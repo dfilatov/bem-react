@@ -42,8 +42,13 @@ var Button = BemReact.createClass({
         };
     }
 });
-
 ```
+You're able to use following special fields (in addition to supported by React) in returned from `renderBemJson` bemjson:
+  * *String* **block** block's name
+  * *String* **tag** html tag
+  * *Object* **mods** modifiers (boolean modifiers are supported as well)
+  * * **children**
+
 ## Using component
 ```js
 BemReact.render(
