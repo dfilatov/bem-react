@@ -54,9 +54,11 @@ You're able to use following special fields (in addition to supported by React) 
 BemReact.render(
     { block : Button, size : 'xl', disabled : true, text : 'click me' },
     document.body);
-// insert to body following html: <button class="button button_size_xl button_disabled">click me</button>
+// inserts to body following html: <button class="button button_size_xl button_disabled">click me</button>
 ```
-Be careful, you should provide reference to a component (not a string) when you use it.
+You're able to use following special fields (in addition to supported by React) when you use component:
+  * *Function* **block** reference to the component
+  * *Array* **mix** mixed elements of another blocks. Yes, only elements.
 
 ### Composition of components
 Let's imagine a dropdown which is the composition of `Button` and `Popup` components:
@@ -105,13 +107,13 @@ var Dropdown = BemReact.createClass({
 
 API is the similar to original React API:
 
-#### createClass(Object specification)
+#### createClass(*Object* specification)
 
-#### render(Object componentJson, DOMElement container, [Function callback])
+#### render(*Object* componentJson, *DOMElement* container, [*Function* callback])
 
-#### renderToString(Object componentJson)
+#### renderToString(*Object* componentJson)
 
-#### renderToStaticMarkup(Object componentJson)
+#### renderToStaticMarkup(*Object* componentJson)
 
-#### unmountComponentAtNode(DOMElement container)
+#### unmountComponentAtNode(*DOMElement* container)
 
