@@ -3,7 +3,7 @@
 BemReact is a small module on top of [React](https://github.com/facebook/react/).
 
 It:
-  * enables you to use bemjson in templates instead of jsx or plain js
+  * enables you to use some kind of bemjson in templates and during usage (instead of jsx or plain js)
   * takes over generating of css classes based on BEM
 
 ## Getting Started
@@ -49,6 +49,8 @@ You're able to use following special fields (in addition to supported by React) 
   * *String* **tag** html tag
   * *Object* **mods** modifiers (boolean modifiers are supported as well)
   * * **children**
+  
+Be careful, there's some variation of bemjson and these fields aren't the same as fields in the original version of bemjson.
 
 ## Using component
 ```js
