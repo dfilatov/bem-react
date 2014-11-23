@@ -15,19 +15,30 @@ var BemReact = require('bem-react');
 ## Building component
 BemReact's component is the same as React's component except you should provide `renderBemJson` method instead of `render`.
 
+Example:
 ```js
 var Button = BemReact.createClass({
+    _onFocus : function() {
+        this.setState({ focused : true });
+    },
+
+    _onBlur : function() {
+        this.setState({ focused : false });
+    },
+
     renderBemJson : function() {
         return {
             block : 'button',
             tag : 'button',
             mods : {
                 size : this.props.size,
-                pressed : this.state.pressed,
                 focused : this.state.focused,
                 disabled : this.props.disabled
             },
-            children : this.props.text
+            children : this.props.text,
+            onFocus : this._onFocus,
+            onBlur : this._onBlur,
+            onClick : this.props.onClick
         };
     }
 });
@@ -41,7 +52,8 @@ BemReact.render(
 // insert to body following html: <button class="button button_size_xl button_disabled">click me</button>
 ```
 
-### Composition
+### Composition of components
+Let's imagine a dropdown which is the composition of `Button` and `Popup` components:
 ```js
 var Dropdown = BemReact.createClass({
     getInitialState : function() {
@@ -87,13 +99,13 @@ var Dropdown = BemReact.createClass({
 
 API is the similar to original React API:
 
-### createClass(Object specification)
+#### createClass(Object specification)
 
-### render(Object componentJson, DOMElement container, [Function callback])
+#### render(Object componentJson, DOMElement container, [Function callback])
 
-### renderToString(Object componentJson)
+#### renderToString(Object componentJson)
 
-### renderToStaticMarkup(Object componentJson)
+#### renderToStaticMarkup(Object componentJson)
 
-### unmountComponentAtNode(DOMElement container)
+#### unmountComponentAtNode(DOMElement container)
 
