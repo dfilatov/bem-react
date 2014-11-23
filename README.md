@@ -8,6 +8,7 @@ It:
 
 ## Getting Started
 
+via CommonJs:
 ```js
 var BemReact = require('bem-react');
 ```
@@ -44,7 +45,7 @@ var Button = BemReact.createClass({
 });
 ```
 You're able to use following special fields (in addition to supported by React) in returned from `renderBemJson` bemjson:
-  * *String* **block** block's name
+  * *String* **block** block name
   * *String* **tag** html tag
   * *Object* **mods** modifiers (boolean modifiers are supported as well)
   * * **children**
@@ -54,14 +55,15 @@ You're able to use following special fields (in addition to supported by React) 
 BemReact.render(
     { block : Button, size : 'xl', disabled : true, text : 'click me' },
     document.body);
-// inserts to body following html: <button class="button button_size_xl button_disabled">click me</button>
+// inserts to body following html:
+// <button class="button button_size_xl button_disabled">click me</button>
 ```
-You're able to use following special fields (in addition to supported by React) when you use component:
+You're able to use following special fields (in addition to supported by React) when you're using component:
   * *Function* **block** reference to the component
   * *Array* **mix** mixed elements of another blocks. Yes, only elements.
 
 ### Composition of components
-Let's imagine a dropdown which is the composition of `Button` and `Popup` components:
+Let's imagine `Dropdown` component which is the composition of `Button` and `Popup` components:
 ```js
 var Dropdown = BemReact.createClass({
     getInitialState : function() {
@@ -105,7 +107,7 @@ var Dropdown = BemReact.createClass({
 
 ## Top-Level API
 
-API is the similar to original React API:
+API is the similar to the original React's API:
 
 #### createClass(*Object* specification)
 
@@ -116,4 +118,3 @@ API is the similar to original React API:
 #### renderToStaticMarkup(*Object* componentJson)
 
 #### unmountComponentAtNode(*DOMElement* container)
-
