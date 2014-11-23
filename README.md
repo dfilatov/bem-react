@@ -51,6 +51,7 @@ BemReact.render(
     document.body);
 // insert to body following html: <button class="button button_size_xl button_disabled">click me</button>
 ```
+Be careful, you should provide reference to a component (not a string) when you use it.
 
 ### Composition of components
 Let's imagine a dropdown which is the composition of `Button` and `Popup` components:
