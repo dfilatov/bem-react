@@ -1,0 +1,21 @@
+.button_focused
+{
+    border: 2px solid red;
+}
+
+.button_pressed
+{
+    background: yellow;
+}
+
+.popup
+{
+    display: none;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.popup_visible
+{
+    display: block;
+}

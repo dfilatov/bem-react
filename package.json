@@ -1,0 +1,12 @@
+{
+  "name": "bem-react",
+  "version": "0.0.1",
+  "description": "BEM-flavoured React",
+  "keywords" : ["react", "bem"],
+  "main": "bem-react.js",
+  "author": "Dmitry Filatov <dfilatov@yandex-team.ru>",
+  "dependencies": {
+    "react": "0.12.x"
+  },
+  "license": "ISC"
+}
