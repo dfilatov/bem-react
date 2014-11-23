@@ -1,6 +1,6 @@
 # bem-react
 
-`bem-react` is a module on top of [React](https://github.com/facebook/react/).
+`bem-react` is a module on top of [React](https://github.com/facebook/react/) which joins awesome React with some good BEM-specific features.
 
 Its main goals:
   * provide ability to use some kind of bemjson in templates and during usage (instead of ugly jsx or plain js)
