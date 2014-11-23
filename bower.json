@@ -1,0 +1,22 @@
+{
+  "name": "react-bem",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dfilatov/bem-react",
+  "authors": [
+    "Dmitry Filatov <dfilatov@yandex-team.ru>"
+  ],
+  "description": "BEM-flavoured React",
+  "main": "bem-react.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "bem"
+  ],
+  "license": "MIT",
+  "dependencies": {
+      "react": "0.12.x"
+  }
+}
