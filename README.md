@@ -22,12 +22,12 @@ var Button = BemReact.createClass({
             block : 'button',
             tag : 'button',
             mods : {
-                theme : this.props.theme,
                 size : this.props.size,
                 pressed : this.state.pressed,
                 focused : this.state.focused,
                 disabled : this.props.disabled
-            }
+            },
+            children : this.props.text
         };
     }
 });
@@ -36,8 +36,51 @@ var Button = BemReact.createClass({
 ## Using component
 ```js
 BemReact.render(
-    { block : Button, theme : 'islands', size : 'xl', disabled : true },
+    { block : Button, size : 'xl', disabled : true, text : 'click me' },
     document.body);
+// insert to body following html: <button class="button button_size_xl button_disabled">click me</button>
+```
+
+### Composition
+```js
+var Dropdown = BemReact.createClass({
+    getInitialState : function() {
+        return {
+            opened : this.props.opened
+        };
+    },
+
+    _onButtonClick : function() {
+        this.setState({ opened : !this.state.opened });
+    },
+
+    renderBemJson : function() {
+        return {
+            block : 'dropdown',
+            mods : {
+                opened : this.state.opened,
+                disabled : this.props.disabled
+            },
+            tag : 'div',
+            children : [
+                {
+                    block : Button,
+                    key : 'b',
+                    disabled : this.state.disabled,
+                    text : 'click me',
+                    onClick : this._onButtonClick
+                },
+                {
+                    block : Popup,
+                    mix : [{ block : 'dropdown', elem : 'popup' }],
+                    key : 'p',
+                    visible : this.state.opened && !this.props.disabled,
+                    children : this.props.children
+                }
+            ]
+        };
+    }
+});
 ```
 
 ## Top-Level API
