@@ -4,7 +4,7 @@
 
 It:
   * enables you to use some kind of bemjson in templates and during usage (instead of jsx or plain js)
-  * takes over generating of css classes based on BEM
+  * takes over generating of css classes based on BEM (instead of annoying string concatenation or `React.addons.classSet` which is also not good for BEM-like css classes)
 
 ## Getting Started
 
