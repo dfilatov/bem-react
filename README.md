@@ -1,6 +1,6 @@
-# BemReact
+# bem-react
 
-BemReact is a small module on top of [React](https://github.com/facebook/react/).
+`bem-react` is a small module on top of [React](https://github.com/facebook/react/).
 
 It:
   * enables you to use some kind of bemjson in templates and during usage (instead of jsx or plain js)
@@ -8,9 +8,18 @@ It:
 
 ## Getting Started
 
-via CommonJs:
-```js
-var BemReact = require('bem-react');
+### Installation
+via npm:
+
+`npm install bem-react`
+
+via bower:
+
+`bower install bem-react`
+
+via script tag:
+```html
+<script type="text/javasript" src="path-to-bem-react/bem-react.js"></script>
 ```
 
 ## Building component
@@ -18,6 +27,8 @@ BemReact's component is the same as React's component except you should provide 
 
 Example:
 ```js
+var BemReact = require('bem-react');
+
 var Button = BemReact.createClass({
     _onFocus : function() {
         this.setState({ focused : true });
