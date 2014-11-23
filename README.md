@@ -1,10 +1,10 @@
 # bem-react
 
-`bem-react` is a small module on top of [React](https://github.com/facebook/react/).
+`bem-react` is a module on top of [React](https://github.com/facebook/react/).
 
-It:
-  * enables you to use some kind of bemjson in templates and during usage (instead of jsx or plain js)
-  * takes over generating of css classes based on BEM (instead of annoying string concatenation or `React.addons.classSet` which is also not good for BEM-like css classes)
+Its main goals:
+  * provide ability to use some kind of bemjson in templates and during usage (instead of ugly jsx or plain js)
+  * take over manipulation of css classes based on BEM (instead of annoying string concatenation or `React.addons.classSet` which is also clumsy for BEM-like css classes)
 
 ## Getting Started
 
