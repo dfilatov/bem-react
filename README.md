@@ -33,6 +33,12 @@ var Button = BemReact.createClass({
 });
 
 ```
+## Using component
+```js
+BemReact.render(
+    { block : Button, theme : 'islands', size : 'xl', disabled : true },
+    document.body);
+```
 
 ## Top-Level API
 
