@@ -51,7 +51,7 @@ function getModule(React) {
 
     var bemMixin = {
             render : function() {
-                var json = this.renderBemJson();
+                var json = this.renderToBemJson();
 
                 if(!json.block) {
                     throw Error('Specify block');

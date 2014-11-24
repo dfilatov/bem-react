@@ -28,7 +28,7 @@ var Button = BemReact.createClass({
         this.setState({ focused : false });
     },
 
-    renderBemJson : function() {
+    renderToBemJson : function() {
         return {
             block : 'button',
             mods : {
@@ -48,7 +48,7 @@ var Button = BemReact.createClass({
 });
 
 var Popup = BemReact.createClass({
-    renderBemJson : function() {
+    renderToBemJson : function() {
         return {
             block : 'popup',
             mods : {
@@ -95,7 +95,7 @@ var Input = BemReact.createClass({
         this.setState({ value : '' }, this.focus);
     },
 
-    renderBemJson : function() {
+    renderToBemJson : function() {
         var children = [{
                 elem : 'control',
                 tag : 'input',
@@ -141,7 +141,7 @@ var Dropdown = BemReact.createClass({
         this.setState({ opened : !this.state.opened });
     },
 
-    renderBemJson : function() {
+    renderToBemJson : function() {
         return {
             block : 'dropdown',
             mods : {
