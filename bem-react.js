@@ -1,5 +1,8 @@
 function getModule(React) {
 
+    var MOD_DELIM = '_',
+        ELEM_DELIM = '__';
+
     function bemJsonToReact(json, curBlock) {
         if(json) {
             if(Array.isArray(json)) {
@@ -13,7 +16,7 @@ function getModule(React) {
                     throw Error('Specify tag');
                 }
 
-                json.className = buildBemClassName((json.block || curBlock) + '__' + json.elem, json.mods, json.mix);
+                json.className = buildBemClassName((json.block || curBlock) + ELEM_DELIM + json.elem, json.mods, json.mix);
                 return React.createElement(json.tag, json, bemJsonToReact(json.children));
             }
 
@@ -30,8 +33,8 @@ function getModule(React) {
 
         for(var modName in mods) {
             mods[modName] &&
-                (res += ' ' + bemEntity + '_' + modName +
-                    (mods[modName] === true? '' : '_' + mods[modName]));
+                (res += ' ' + bemEntity + MOD_DELIM + modName +
+                    (mods[modName] === true? '' : MOD_DELIM + mods[modName]));
         }
 
         if(mix) {
@@ -42,7 +45,7 @@ function getModule(React) {
                     throw Error('Specify both block and elem in mix');
                 }
 
-                res += ' ' + buildBemClassName(mixItem.block + '__' + mixItem.elem, mixItem.mods);
+                res += ' ' + buildBemClassName(mixItem.block + ELEM_DELIM + mixItem.elem, mixItem.mods);
             }
         }
 
