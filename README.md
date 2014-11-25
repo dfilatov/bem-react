@@ -1,4 +1,4 @@
-# bem-react
+# bem-react [![NPM version](https://badge.fury.io/js/bem-react.png)](http://badge.fury.io/js/bem-react)
 
 `bem-react` is a module on top of [React](https://github.com/facebook/react/) which joins awesome React with some good BEM-specific features.
 
