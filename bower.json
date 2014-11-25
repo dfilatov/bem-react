@@ -6,9 +6,8 @@
     "Dmitry Filatov <dfilatov@yandex-team.ru>"
   ],
   "description": "BEM-flavoured React",
-  "main": "bem-react.js",
+  "main": "lib/bemReact.js",
   "moduleType": [
-    "globals",
     "node"
   ],
   "keywords": [
