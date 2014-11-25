@@ -18,5 +18,8 @@
     "react": "0.12.x",
     "jasmine": "2.1.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "jasmine"
+  }
 }
