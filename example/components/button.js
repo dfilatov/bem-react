@@ -44,7 +44,7 @@ module.exports = bemReact.createClass({
             onBlur : this._onBlur,
             onClick : this.props.onClick,
             disabled : this.props.disabled,
-            content : this.props.text
+            children : this.props.text
         };
     }
 });

@@ -9,7 +9,7 @@ module.exports = bemReact.createClass({
             },
             tag : 'div',
             onClick : this._onClick,
-            content : this.props.content
+            children : this.props.children
         };
     }
 });

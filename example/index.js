@@ -2,5 +2,5 @@ var bemReact = require('../lib/bemReact'),
     Dropdown = require('./components/dropdown');
 
 bemReact.render(
-    { block : Dropdown, content : 'dropdown content' },
+    { block : Dropdown, children : 'dropdown content' },
     document.body);

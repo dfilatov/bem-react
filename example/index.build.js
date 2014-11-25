@@ -45,7 +45,7 @@ module.exports = bemReact.createClass({
             onBlur : this._onBlur,
             onClick : this.props.onClick,
             disabled : this.props.disabled,
-            content : this.props.text
+            children : this.props.text
         };
     }
 });
@@ -74,7 +74,7 @@ module.exports = bemReact.createClass({
                 disabled : this.props.disabled
             },
             tag : 'div',
-            content : [
+            children : [
                 {
                     block : Button,
                     key : 'b',
@@ -87,7 +87,7 @@ module.exports = bemReact.createClass({
                     mix : [{ block : 'dropdown', elem : 'popup' }],
                     key : 'p',
                     visible : this.state.opened && !this.props.disabled,
-                    content : this.props.content
+                    children : this.props.children
                 }
             ]
         };
@@ -106,7 +106,7 @@ module.exports = bemReact.createClass({
             },
             tag : 'div',
             onClick : this._onClick,
-            content : this.props.content
+            children : this.props.children
         };
     }
 });
@@ -116,7 +116,7 @@ var bemReact = require('../lib/bemReact'),
     Dropdown = require('./components/dropdown');
 
 bemReact.render(
-    { block : Dropdown, content : 'dropdown content' },
+    { block : Dropdown, children : 'dropdown content' },
     document.body);
 
 },{"../lib/bemReact":6,"./components/dropdown":2}],5:[function(require,module,exports){
@@ -139,13 +139,10 @@ module.exports = function bemJsonToReact(json, curBlock) {
 
             json.className = buildBemClassName(json.block || curBlock, json.elem, json.mods, json.mix);
 
-            var children;
-            if(typeof json.content !== 'undefined') {
-                children = bemJsonToReact(json.content, curBlock);
-                json.content = null;
-            }
-
-            return react.createElement(json.tag, json, children);
+            return react.createElement(
+                json.tag,
+                json,
+                bemJsonToReact(json.children, curBlock));
         }
 
         if(json.block) {
@@ -258,16 +255,10 @@ module.exports = function(spec) {
 
         json.className = buildBemClassName(json.block, json.mods, this.props.mix);
 
-        var children;
-        if(typeof json.content !== 'undefined') {
-            children = bemJsonToReact(json.content, json.block);
-            json.content = null;
-        }
-
         return react.createElement(
             json.tag,
             json,
-            children);
+            bemJsonToReact(json.children, json.block));
     };
 
     return react.createClass(spec);
