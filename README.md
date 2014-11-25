@@ -9,18 +9,9 @@ Its main goals:
 ## Getting Started
 
 ### Installation
-via npm:
+via npm: `npm install bem-react`
 
-`npm install bem-react`
-
-via bower:
-
-`bower install bem-react`
-
-via script tag:
-```html
-<script type="text/javasript" src="path-to-bem-react/bem-react.js"></script>
-```
+via bower: `bower install bem-react`
 
 ## Building component
 BemReact's component is the same as React's component except you should provide `renderToBemJson` method instead of `render`.
@@ -30,6 +21,12 @@ Example:
 var BemReact = require('bem-react');
 
 var Button = BemReact.createClass({
+    getInitialState : function() {
+        return {
+            focused : this.props.focused
+        };
+    },
+    
     _onFocus : function() {
         this.setState({ focused : true });
     },
