@@ -115,6 +115,11 @@ var Dropdown = BemReact.createClass({
 });
 ```
 
+### Differences between returned from `render` bemjson and traditional one
+  * `content` field is named `children`
+  * there's no special `attrs` field, all fields are attributes
+  * there's allowed to mix elements of blocks only, not blocks itself
+
 ## Top-Level API
 
 API is the similar to the original React's API:
