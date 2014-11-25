@@ -30,7 +30,7 @@ module.exports = bemReact.createClass({
         this.setState({ focused : false });
     },
 
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'button',
             mods : {

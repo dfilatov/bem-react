@@ -1,7 +1,7 @@
 var bemReact = require('../../lib/bemReact');
 
 module.exports = bemReact.createClass({
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'popup',
             mods : {

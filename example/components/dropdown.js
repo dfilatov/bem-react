@@ -13,7 +13,7 @@ module.exports = bemReact.createClass({
         this.setState({ opened : !this.state.opened });
     },
 
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'dropdown',
             mods : {

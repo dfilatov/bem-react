@@ -14,7 +14,7 @@ via npm: `npm install bem-react`
 via bower: `bower install bem-react`
 
 ## Building component
-BemReact's component is the same as React's component except you should provide `renderToBemJson` method instead of `render`.
+BemReact's component is the same as React's one except you should return bemjson from `render` method.
 
 Example:
 ```js
@@ -35,7 +35,7 @@ var Button = BemReact.createClass({
         this.setState({ focused : false });
     },
 
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'button',
             tag : 'button',
@@ -52,7 +52,7 @@ var Button = BemReact.createClass({
     }
 });
 ```
-You're able to use following special fields (in addition to supported by React) in returned from `renderToBemJson` bemjson:
+You're able to use following special fields (in addition to supported by React) in returned from `render` bemjson:
   * *String* **block** block name
   * *String* **tag** html tag
   * *Object* **mods** modifiers (boolean modifiers are supported as well)
@@ -86,7 +86,7 @@ var Dropdown = BemReact.createClass({
         this.setState({ opened : !this.state.opened });
     },
 
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'dropdown',
             mods : {

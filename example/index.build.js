@@ -31,7 +31,7 @@ module.exports = bemReact.createClass({
         this.setState({ focused : false });
     },
 
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'button',
             mods : {
@@ -50,7 +50,7 @@ module.exports = bemReact.createClass({
     }
 });
 
-},{"../../lib/bemReact":7}],2:[function(require,module,exports){
+},{"../../lib/bemReact":6}],2:[function(require,module,exports){
 var bemReact = require('../../lib/bemReact'),
     Button = require('./button'),
     Popup = require('./popup');
@@ -66,7 +66,7 @@ module.exports = bemReact.createClass({
         this.setState({ opened : !this.state.opened });
     },
 
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'dropdown',
             mods : {
@@ -94,11 +94,11 @@ module.exports = bemReact.createClass({
     }
 });
 
-},{"../../lib/bemReact":7,"./button":1,"./popup":3}],3:[function(require,module,exports){
+},{"../../lib/bemReact":6,"./button":1,"./popup":3}],3:[function(require,module,exports){
 var bemReact = require('../../lib/bemReact');
 
 module.exports = bemReact.createClass({
-    renderToBemJson : function() {
+    render : function() {
         return {
             block : 'popup',
             mods : {
@@ -111,7 +111,7 @@ module.exports = bemReact.createClass({
     }
 });
 
-},{"../../lib/bemReact":7}],4:[function(require,module,exports){
+},{"../../lib/bemReact":6}],4:[function(require,module,exports){
 var bemReact = require('../lib/bemReact'),
     Dropdown = require('./components/dropdown');
 
@@ -119,7 +119,7 @@ bemReact.render(
     { block : Dropdown, children : 'dropdown content' },
     document.body);
 
-},{"../lib/bemReact":7,"./components/dropdown":2}],5:[function(require,module,exports){
+},{"../lib/bemReact":6,"./components/dropdown":2}],5:[function(require,module,exports){
 var react = require('react');
 
 module.exports = function bemJsonToReact(json, curBlock) {
@@ -149,41 +149,9 @@ module.exports = function bemJsonToReact(json, curBlock) {
 
 },{"react":155}],6:[function(require,module,exports){
 var react = require('react'),
-    buildBemClassName = require('./buildBemClassName'),
-    bemJsonToReact = require('./bemJsonToReact');
+    createClass = require('./createClass');
 
-module.exports = {
-    render : function() {
-        var json = this.renderToBemJson();
-
-        if(!json.block) {
-            throw Error('Specify block');
-        }
-
-        if(!json.tag) {
-            throw Error('Specify tag');
-        }
-
-        json.className = buildBemClassName(json.block, json.mods, this.props.mix);
-
-        return react.createElement(
-            json.tag,
-            json,
-            bemJsonToReact(json.children, json.block));
-    }
-};
-
-},{"./bemJsonToReact":5,"./buildBemClassName":8,"react":155}],7:[function(require,module,exports){
-var react = require('react'),
-    bemMixin = require('./bemMixin');
-
-exports.createClass = function(spec) {
-    spec.mixins?
-        spec.mixins.unshift(bemMixin) :
-        spec.mixins = [bemMixin];
-
-    return react.createClass(spec);
-};
+exports.createClass = createClass;
 
 exports.unmountComponentAtNode = function(container) {
     return react.unmountComponentAtNode(container);
@@ -201,7 +169,7 @@ exports.unmountComponentAtNode = function(container) {
     };
 });
 
-},{"./bemMixin":6,"react":155}],8:[function(require,module,exports){
+},{"./createClass":8,"react":155}],7:[function(require,module,exports){
 var MOD_DELIM = '_',
     ELEM_DELIM = '__';
 
@@ -237,7 +205,36 @@ module.exports = function buildBemClassName(block, elem, mods, mix) {
     return res;
 };
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
+var react = require('react'),
+    buildBemClassName = require('./buildBemClassName'),
+    bemJsonToReact = require('./bemJsonToReact');
+
+module.exports = function(spec) {
+    var origRender = spec.render;
+    spec.render = function() {
+        var json = origRender.call(this);
+
+        if(!json.block) {
+            throw Error('Specify block');
+        }
+
+        if(!json.tag) {
+            throw Error('Specify tag');
+        }
+
+        json.className = buildBemClassName(json.block, json.mods, this.props.mix);
+
+        return react.createElement(
+            json.tag,
+            json,
+            bemJsonToReact(json.children, json.block));
+    };
+
+    return react.createClass(spec);
+};
+
+},{"./bemJsonToReact":5,"./buildBemClassName":7,"react":155}],9:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
