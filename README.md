@@ -107,7 +107,7 @@ var Dropdown = BemReact.createClass({
 
 ## BEMJSON
 There're two kinds of bemjson items.
-### 1. BEMJSON of current rendered component
+### 1. Current rendered component
 You're able to use following additional fields in top-level item returned from `render`:
   * *String* **block** block name, required
   * *String* **tag** html tag, required
@@ -118,7 +118,7 @@ Be careful:
   * there's no special `attrs` field, all fields are attributes
   * you aren't allowed to use `mix` field there
 
-### 2. Links to other components
+### 2. Usage of other components
 You're able to use following additional fields:
   * *Function* **block** link to another block, required
   * *Array* **mix** mixed elements, optional
