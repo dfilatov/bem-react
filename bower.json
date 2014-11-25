@@ -21,8 +21,8 @@
       "react": "0.12.x"
   },
   "ignore": [
-    ".npmignore",
+    ".*",
     "spec",
-    "package.json"
+    "example"
   ]
 }
