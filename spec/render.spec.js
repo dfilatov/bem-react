@@ -33,6 +33,6 @@ describe('render', function() {
     it('should throw error if block isn\'t specified in input', function() {
         expect(function() {
             bemReact.renderToStaticMarkup({ foo : 'bar' });
-        }).toThrowError('renderToStaticMarkup: invalid bem component json');
+        }).toThrowError('render: invalid bem component json');
     });
 });
