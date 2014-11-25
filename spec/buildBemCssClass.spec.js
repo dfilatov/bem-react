@@ -27,13 +27,13 @@ describe('buildBemClassName', function() {
             .toBe('button mixed__elem');
     });
 
-    it('should throw error if mix doesn\'t contain only block', function() {
+    it('should throw error if mix contains block only', function() {
         expect(function() {
             buildBemClassName('button', null, [{ block : 'mixed' }])
         }).toThrowError('Specify both block and elem in mix');
     });
 
-    it('should throw error if mix doesn\'t contain only elem', function() {
+    it('should throw error if mix only contains elem', function() {
         expect(function() {
             buildBemClassName('button', null, [{ elem : 'mixed' }])
         }).toThrowError('Specify both block and elem in mix');
