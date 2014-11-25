@@ -1,8 +1,13 @@
 {
   "name": "bem-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "BEM-flavoured React",
-  "keywords" : ["react", "bem"],
+  "keywords" : [
+    "react",
+    "bem",
+    "json",
+    "bemjson"
+  ],
   "main": "lib/bemReact.js",
   "author": "Dmitry Filatov <dfilatov@yandex-team.ru>",
   "peerDependencies": {
@@ -12,5 +17,5 @@
     "browserify": "6.3.3",
     "react": "0.12.x"
   },
-  "license": "ISC"
+  "license": "MIT"
 }
