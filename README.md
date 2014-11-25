@@ -52,14 +52,6 @@ var Button = BemReact.createClass({
     }
 });
 ```
-You're able to use following special fields (in addition to supported by React) in returned from `render` bemjson:
-  * *String* **block** block name
-  * *String* **tag** html tag
-  * *Object* **mods** modifiers (boolean modifiers are supported as well)
-  * * **children**
-  
-Be careful, there's some variation of bemjson and these fields aren't the same as fields in the original version of bemjson.
-
 ## Using a component
 ```js
 BemReact.render(
@@ -68,10 +60,6 @@ BemReact.render(
 // inserts to body following html:
 // <button class="button button_size_xl button_disabled">click me</button>
 ```
-You're able to use following special fields (in addition to supported by React) when you're using component:
-  * *Function* **block** reference to the component
-  * *Array* **mix** mixed elements of another blocks. Yes, only elements.
-
 ### Composition of components
 Let's imagine `Dropdown` component which is the composition of `Button` and `Popup` components:
 ```js
@@ -115,11 +103,22 @@ var Dropdown = BemReact.createClass({
 });
 ```
 
-### Differences between returned from `render` bemjson and traditional one
-  * `content` field is named `children`
-  * there's no special `attrs` field, all fields are attributes
-  * there's allowed to mix elements of blocks only, not blocks itself
+## BEMJSON
+There're two kind of bemjson items.
+### 1. bemjson of current rendered component
+You're able to use following additional fields in top-level item returned from `render`:
+  * *String* **block** block name, required
+  * *String* **tag** html tag, required
+  * *Object* **mods** modifiers (boolean modifiers are supported as well), optional
+  * * **children** children (it's the same as `content` field of original version of bemjson), optional
 
+Be careful, there's no special `attrs` field, all fields are attributes.
+
+### 2. Links to other components
+You're able to use following additional fields:
+  * *Function* **block** link to another block, required
+  * *Array* **mix** mixed elements, optional
+  * * **children** children, optional
 ## Top-Level API
 
 API is the similar to the original React's API:
