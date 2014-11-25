@@ -30,12 +30,12 @@ describe('buildBemClassName', function() {
     it('should throw error if mix contains block only', function() {
         expect(function() {
             buildBemClassName('button', null, [{ block : 'mixed' }])
-        }).toThrowError('Specify both block and elem in mix');
+        }).toThrowError('render: both block and elem should be specified in mix');
     });
 
     it('should throw error if mix only contains elem', function() {
         expect(function() {
             buildBemClassName('button', null, [{ elem : 'mixed' }])
-        }).toThrowError('Specify both block and elem in mix');
+        }).toThrowError('render: both block and elem should be specified in mix');
     });
 });

@@ -133,7 +133,7 @@ module.exports = function bemJsonToReact(json, curBlock) {
 
         if(json.elem) {
             if(!json.tag) {
-                throw Error('Specify tag');
+                throw Error('render: tag should be specified in elem');
             }
 
             json.className = buildBemClassName(json.block || curBlock, json.elem, json.mods, json.mix);
@@ -203,7 +203,7 @@ module.exports = function buildBemClassName(block, elem, mods, mix) {
 
         while(mixItem = mix[i++]) {
             if(!mixItem.block || !mixItem.elem) {
-                throw Error('Specify both block and elem in mix');
+                throw Error('render: both block and elem should be specified in mix');
             }
 
             res += ' ' + buildBemClassName(mixItem.block, mixItem.elem, mixItem.mods);
@@ -220,15 +220,26 @@ var react = require('react'),
 
 module.exports = function(spec) {
     var origRender = spec.render;
+    if(!origRender) {
+        throw Error('Specify render method');
+    }
     spec.render = function() {
         var json = origRender.call(this);
 
+        if(!json) {
+            throw Error('render: should return bemjson');
+        }
+
         if(!json.block) {
-            throw Error('Specify block');
+            throw Error('render: block should be specified in returned bemjson');
+        }
+
+        if(typeof json.block !== 'string') {
+            throw Error('render: block should be a string');
         }
 
         if(!json.tag) {
-            throw Error('Specify tag');
+            throw Error('render: tag should be specified in returned bemjson');
         }
 
         json.className = buildBemClassName(json.block, json.mods, this.props.mix);

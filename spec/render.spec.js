@@ -30,7 +30,7 @@ describe('render', function() {
             .toBe('<div disabled></div>');
     });
 
-    it('should throw exception if block isn\'t specified in input', function() {
+    it('should throw error if block isn\'t specified in input', function() {
         expect(function() {
             bemReact.renderToStaticMarkup({ foo : 'bar' });
         }).toThrowError('renderToStaticMarkup: invalid bem component json');
