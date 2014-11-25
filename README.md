@@ -44,7 +44,7 @@ var Button = BemReact.createClass({
                 focused : this.state.focused,
                 disabled : this.props.disabled
             },
-            children : this.props.text,
+            content : this.props.text,
             onFocus : this._onFocus,
             onBlur : this._onBlur,
             onClick : this.props.onClick
@@ -56,7 +56,7 @@ You're able to use following special fields (in addition to supported by React) 
   * *String* **block** block name
   * *String* **tag** html tag
   * *Object* **mods** modifiers (boolean modifiers are supported as well)
-  * * **children**
+  * * **content**
   
 Be careful, there's some variation of bemjson and these fields aren't the same as fields in the original version of bemjson.
 
@@ -94,7 +94,7 @@ var Dropdown = BemReact.createClass({
                 disabled : this.props.disabled
             },
             tag : 'div',
-            children : [
+            content : [
                 {
                     block : Button,
                     key : 'b',
@@ -107,7 +107,7 @@ var Dropdown = BemReact.createClass({
                     mix : [{ block : 'dropdown', elem : 'popup' }],
                     key : 'p',
                     visible : this.state.opened && !this.props.disabled,
-                    children : this.props.children
+                    content : this.props.content
                 }
             ]
         };

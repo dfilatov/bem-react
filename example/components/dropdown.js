@@ -21,7 +21,7 @@ module.exports = bemReact.createClass({
                 disabled : this.props.disabled
             },
             tag : 'div',
-            children : [
+            content : [
                 {
                     block : Button,
                     key : 'b',
@@ -34,7 +34,7 @@ module.exports = bemReact.createClass({
                     mix : [{ block : 'dropdown', elem : 'popup' }],
                     key : 'p',
                     visible : this.state.opened && !this.props.disabled,
-                    children : this.props.children
+                    content : this.props.content
                 }
             ]
         };
