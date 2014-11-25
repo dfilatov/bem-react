@@ -13,7 +13,7 @@ via npm: `npm install bem-react`
 
 via bower: `bower install bem-react`
 
-## Building component
+## Building a component
 BemReact's component is the same as React's one except you should return bemjson from `render` method.
 
 Example:
@@ -60,7 +60,7 @@ You're able to use following special fields (in addition to supported by React) 
   
 Be careful, there's some variation of bemjson and these fields aren't the same as fields in the original version of bemjson.
 
-## Using component
+## Using a component
 ```js
 BemReact.render(
     { block : Button, size : 'xl', disabled : true, text : 'click me' },
