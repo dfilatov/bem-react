@@ -114,7 +114,9 @@ You're able to use following additional fields in top-level item returned from `
   * *Object* **mods** modifiers (boolean modifiers are supported as well), optional
   * * **children** children (it's the same as `content` field of original version of bemjson), optional
 
-Be careful, there's no special `attrs` field, all fields are attributes.
+Be careful:
+  * there's no special `attrs` field, all fields are attributes
+  * you aren't allowed to use `mix` field there
 
 ### 2. Links to other components
 You're able to use following additional fields:
