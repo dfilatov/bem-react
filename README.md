@@ -52,6 +52,7 @@ var Button = BemReact.createClass({
     }
 });
 ```
+
 ## Using a component
 ```js
 BemReact.render(
@@ -60,6 +61,7 @@ BemReact.render(
 // inserts to body following html:
 // <button class="button button_size_xl button_disabled">click me</button>
 ```
+
 ### Composition of components
 Let's imagine `Dropdown` component which is the composition of `Button` and `Popup` components:
 ```js
@@ -104,8 +106,8 @@ var Dropdown = BemReact.createClass({
 ```
 
 ## BEMJSON
-There're two kind of bemjson items.
-### 1. bemjson of current rendered component
+There're two kinds of bemjson items.
+### 1. BEMJSON of current rendered component
 You're able to use following additional fields in top-level item returned from `render`:
   * *String* **block** block name, required
   * *String* **tag** html tag, required
@@ -119,6 +121,7 @@ You're able to use following additional fields:
   * *Function* **block** link to another block, required
   * *Array* **mix** mixed elements, optional
   * * **children** children, optional
+
 ## Top-Level API
 
 API is the similar to the original React's API:
