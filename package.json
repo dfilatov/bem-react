@@ -15,7 +15,8 @@
   },
   "devDependencies": {
     "browserify": "6.3.3",
-    "react": "0.12.x"
+    "react": "0.12.x",
+    "jasmine": "2.1.0"
   },
   "license": "MIT"
 }
