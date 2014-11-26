@@ -9,6 +9,6 @@ describe('createClass', function() {
     it('should throw error if "render" method isn\'t specified', function() {
         expect(function() {
             createClass({});
-        }).toThrowError('Specify render method');
+        }).toThrowError('createClass: "render" method should be specified');
     });
 });
