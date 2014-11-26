@@ -110,7 +110,7 @@ There're two kinds of bemjson items.
 ### 1. Current rendered component
 You're able to use following additional fields in top-level item returned from `render`:
   * *String* **block** block name, required
-  * *String* **tag** html tag, required
+  * *String* **tag** html tag, optional, `<div>` by default
   * *Object* **mods** modifiers (boolean modifiers are supported as well), optional
   * * **children** children (it's the same as `content` field of original version of bemjson), optional
 
