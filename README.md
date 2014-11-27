@@ -44,10 +44,12 @@ var Button = BemReact.createClass({
                 focused : this.state.focused,
                 disabled : this.props.disabled
             },
-            children : this.props.text,
-            onFocus : this._onFocus,
-            onBlur : this._onBlur,
-            onClick : this.props.onClick
+            attrs : {
+                onFocus : this._onFocus,
+                onBlur : this._onBlur,
+                onClick : this.props.onClick
+            },
+            content : this.props.text
         };
     }
 });
@@ -56,7 +58,7 @@ var Button = BemReact.createClass({
 ## Using a component
 ```js
 BemReact.render(
-    { block : Button, size : 'xl', disabled : true, text : 'click me' },
+    { block : Button, props : { size : 'xl', disabled : true, text : 'click me' } },
     document.body);
 // inserts to body following html:
 // <button class="button button_size_xl button_disabled">click me</button>
@@ -83,21 +85,24 @@ var Dropdown = BemReact.createClass({
                 opened : this.state.opened,
                 disabled : this.props.disabled
             },
-            tag : 'div',
-            children : [
+            content : [
                 {
                     block : Button,
-                    key : 'b',
-                    disabled : this.props.disabled,
-                    text : 'click me',
-                    onClick : this._onButtonClick
+                    props : {
+                        key : 'b',
+                        disabled : this.props.disabled,
+                        text : 'click me',
+                        onClick : this._onButtonClick
+                    }
                 },
                 {
                     block : Popup,
                     mix : [{ block : 'dropdown', elem : 'popup' }],
-                    key : 'p',
-                    visible : this.state.opened && !this.props.disabled,
-                    children : this.props.children
+                    props : {
+                        key : 'p',
+                        visible : this.state.opened && !this.props.disabled,
+                        content : this.props.content
+                    }
                 }
             ]
         };
@@ -108,21 +113,20 @@ var Dropdown = BemReact.createClass({
 ## BEMJSON
 There're two kinds of bemjson items.
 ### 1. Current rendered component
-You're able to use following additional fields in top-level item returned from `render`:
+You're able to use following fields in top-level item returned from `render`:
   * *String* **block** block name, required
   * *String* **tag** html tag, optional, `<div>` by default
   * *Object* **mods** modifiers (boolean modifiers are supported as well), optional
-  * * **children** children (it's the same as `content` field of original version of bemjson), optional
+  * *Object* **attrs** html attributes including event's listeners, optional
+  * * **content** inner content, optional
 
-Be careful:
-  * there's no special `attrs` field, all fields are attributes
-  * you aren't allowed to use `mix` field there
+Be careful, you aren't allowed to use `mix` field there
 
-### 2. Usage of other components
-You're able to use following additional fields:
+### 2. Usage of components
+You're able to use following fields:
   * *Function* **block** link to another block, required
+  * *Object* **props** properties, optional
   * *Array* **mix** mixed elements, optional
-  * * **children** children, optional
 
 ## Top-Level API
 
