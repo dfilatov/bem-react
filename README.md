@@ -45,6 +45,7 @@ var Button = BemReact.createClass({
                 disabled : this.props.disabled
             },
             props : {
+                disabled : this.props.disabled,
                 onFocus : this._onFocus,
                 onBlur : this._onBlur,
                 onClick : this.props.onClick
