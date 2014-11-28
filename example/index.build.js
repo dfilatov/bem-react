@@ -40,12 +40,14 @@ module.exports = bemReact.createClass({
                 focused : this.state.focused
             },
             tag : 'button',
-            onMouseDown : this._onMouseDown,
-            onFocus : this._onFocus,
-            onBlur : this._onBlur,
-            onClick : this.props.onClick,
-            disabled : this.props.disabled,
-            children : this.props.text
+            attrs : {
+                onMouseDown : this._onMouseDown,
+                onFocus : this._onFocus,
+                onBlur : this._onBlur,
+                onClick : this.props.onClick,
+                disabled : this.props.disabled
+            },
+            content : this.props.text
         };
     }
 });
@@ -74,20 +76,24 @@ module.exports = bemReact.createClass({
                 disabled : this.props.disabled
             },
             tag : 'div',
-            children : [
+            content : [
                 {
                     block : Button,
-                    key : 'b',
-                    disabled : this.props.disabled,
-                    text : 'dropdown-button',
-                    onClick : this._onButtonClick
+                    props : {
+                        key : 'b',
+                        disabled : this.props.disabled,
+                        text : 'dropdown-button',
+                        onClick : this._onButtonClick
+                    }
                 },
                 {
                     block : Popup,
                     mix : [{ block : 'dropdown', elem : 'popup' }],
-                    key : 'p',
-                    visible : this.state.opened && !this.props.disabled,
-                    children : this.props.children
+                    props : {
+                        key : 'p',
+                        visible : this.state.opened && !this.props.disabled,
+                        content : this.props.content
+                    }
                 }
             ]
         };
@@ -104,9 +110,10 @@ module.exports = bemReact.createClass({
             mods : {
                 visible : this.props.visible
             },
-            tag : 'div',
-            onClick : this._onClick,
-            children : this.props.children
+            attrs : {
+                onClick : this._onClick
+            },
+            content : this.props.content
         };
     }
 });
@@ -116,7 +123,7 @@ var bemReact = require('../lib/bemReact'),
     Dropdown = require('./components/dropdown');
 
 bemReact.render(
-    { block : Dropdown, children : 'dropdown content' },
+    { block : Dropdown, props : { content : 'dropdown content' } },
     document.body);
 
 },{"../lib/bemReact":6,"./components/dropdown":2}],5:[function(require,module,exports){
@@ -137,12 +144,13 @@ module.exports = function bemJsonToReact(json, curBlock) {
                 throw Error('render: tag should be specified in elem');
             }
 
-            json.className = buildBemClassName(json.block || curBlock, json.elem, json.mods, json.mix);
+            (json.attrs || (json.attrs = {}))
+                .className = buildBemClassName(json.block || curBlock, json.elem, json.mods, json.mix);
 
             return react.createElement(
                 json.tag,
-                json,
-                bemJsonToReact(json.children, curBlock));
+                json.attrs,
+                bemJsonToReact(json.content, curBlock));
         }
 
         if(json.block) {
@@ -221,7 +229,7 @@ module.exports = function(json) {
         throw Error('render: reference to block should be a constructor, not a ' + typeOfBlock);
     }
 
-    return react.createElement(json.block, json);
+    return react.createElement(json.block, json.props);
 };
 
 },{"react":156}],9:[function(require,module,exports){
@@ -232,7 +240,7 @@ var react = require('react'),
 module.exports = function(spec) {
     var origRender = spec.render;
     if(!origRender) {
-        throw Error('Specify render method');
+        throw Error('createClass: "render" method should be specified');
     }
     spec.render = function() {
         var json = origRender.call(this);
@@ -249,16 +257,13 @@ module.exports = function(spec) {
             throw Error('render: block should be a string');
         }
 
-        if(!json.tag) {
-            throw Error('render: tag should be specified in returned bemjson');
-        }
-
-        json.className = buildBemClassName(json.block, json.mods, this.props.mix);
+        (json.attrs || (json.attrs = {}))
+            .className = buildBemClassName(json.block, json.mods, this.props.mix);
 
         return react.createElement(
-            json.tag,
-            json,
-            bemJsonToReact(json.children, json.block));
+            json.tag || 'div',
+            json.attrs,
+            bemJsonToReact(json.content, json.block));
     };
 
     return react.createClass(spec);

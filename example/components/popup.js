@@ -7,9 +7,10 @@ module.exports = bemReact.createClass({
             mods : {
                 visible : this.props.visible
             },
-            tag : 'div',
-            onClick : this._onClick,
-            children : this.props.children
+            attrs : {
+                onClick : this._onClick
+            },
+            content : this.props.content
         };
     }
 });
