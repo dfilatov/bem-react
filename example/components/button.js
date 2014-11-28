@@ -39,7 +39,7 @@ module.exports = bemReact.createClass({
                 focused : this.state.focused
             },
             tag : 'button',
-            attrs : {
+            props : {
                 onMouseDown : this._onMouseDown,
                 onFocus : this._onFocus,
                 onBlur : this._onBlur,

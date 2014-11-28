@@ -26,7 +26,7 @@ describe('render', function() {
                 }
             });
 
-        expect(bemReact.renderToStaticMarkup({ block : ReactComponent, disabled : true }))
+        expect(bemReact.renderToStaticMarkup({ block : ReactComponent, props : { disabled : true } }))
             .toBe('<div disabled></div>');
     });
 

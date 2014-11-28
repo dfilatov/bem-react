@@ -40,7 +40,7 @@ module.exports = bemReact.createClass({
                 focused : this.state.focused
             },
             tag : 'button',
-            attrs : {
+            props : {
                 onMouseDown : this._onMouseDown,
                 onFocus : this._onFocus,
                 onBlur : this._onBlur,
@@ -110,7 +110,7 @@ module.exports = bemReact.createClass({
             mods : {
                 visible : this.props.visible
             },
-            attrs : {
+            props : {
                 onClick : this._onClick
             },
             content : this.props.content
@@ -144,12 +144,12 @@ module.exports = function bemJsonToReact(json, curBlock) {
                 throw Error('render: tag should be specified in elem');
             }
 
-            (json.attrs || (json.attrs = {}))
+            (json.props || (json.props = {}))
                 .className = buildBemClassName(json.block || curBlock, json.elem, json.mods, json.mix);
 
             return react.createElement(
                 json.tag,
-                json.attrs,
+                json.props,
                 bemJsonToReact(json.content, curBlock));
         }
 
@@ -257,12 +257,12 @@ module.exports = function(spec) {
             throw Error('render: block should be a string');
         }
 
-        (json.attrs || (json.attrs = {}))
+        (json.props || (json.props = {}))
             .className = buildBemClassName(json.block, json.mods, this.props.mix);
 
         return react.createElement(
             json.tag || 'div',
-            json.attrs,
+            json.props,
             bemJsonToReact(json.content, json.block));
     };
 

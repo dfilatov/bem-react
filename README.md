@@ -44,7 +44,7 @@ var Button = BemReact.createClass({
                 focused : this.state.focused,
                 disabled : this.props.disabled
             },
-            attrs : {
+            props : {
                 onFocus : this._onFocus,
                 onBlur : this._onBlur,
                 onClick : this.props.onClick
@@ -117,7 +117,7 @@ You're able to use following fields in top-level item returned from `render`:
   * *String* **block** block name, required
   * *String* **tag** html tag, optional, `<div>` by default
   * *Object* **mods** modifiers (boolean modifiers are supported as well), optional
-  * *Object* **attrs** html attributes including event's listeners, optional
+  * *Object* **props** properties (similar to the `attrs` in the traditional bemjson), optional
   * * **content** inner content, optional
 
 Be careful, you aren't allowed to use `mix` field there

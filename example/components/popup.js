@@ -7,7 +7,7 @@ module.exports = bemReact.createClass({
             mods : {
                 visible : this.props.visible
             },
-            attrs : {
+            props : {
                 onClick : this._onClick
             },
             content : this.props.content
