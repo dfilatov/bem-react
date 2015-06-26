@@ -131,7 +131,17 @@ You're able to use following fields:
 
 ## Top-Level API
 
-API is the similar to the original React's API:
+#### setOptions(*Object* options)
+Allows to set custom BEM naming options:
+```js
+BemReact.setOptions({ 
+    elemDelim : '-', 
+    modDelim : '_', 
+    modValDelim : '=' 
+});
+```
+
+The rest API is similar to the original React API:
 
 #### createClass(*Object* specification)
 

@@ -1,4 +1,5 @@
 var buildBemClassName = require('../lib/buildBemClassName');
+var options = require('../lib/options');
 
 describe('buildBemClassName', function() {
     it('should build block class name', function() {
@@ -37,5 +38,15 @@ describe('buildBemClassName', function() {
         expect(function() {
             buildBemClassName('button', null, [{ elem : 'mixed' }])
         }).toThrowError('render: both block and elem should be specified in mix');
+    });
+
+    it('should respect naming options', function() {
+        options.set({
+            elemDelim : '-',
+            modDelim : '_',
+            modValDelim : '='
+        });
+        expect(buildBemClassName('button', 'box', { mod : 'val' }, [{ block : 'mixed', elem : 'elem' }]))
+            .toBe('button-box button-box_mod=val mixed-elem');
     });
 });
