@@ -1,10 +1,11 @@
 var bemReact = require('../lib/bemReact'),
-    react = require('react');
+    React = require('react'),
+    ReactDOMServer = require('react-dom/server');
 
 describe('render', function() {
-    var Block;
-    beforeEach(function() {
-        Block = bemReact.createClass({
+
+    it( 'should accept element from bem component json', function() {
+        var Block = bemReact.createClass({
             render : function() {
                 return {
                     block : 'test',
@@ -12,27 +13,86 @@ describe('render', function() {
                 };
             }
         });
-    });
 
-    it('should accept bem component json', function() {
-        expect(bemReact.renderToStaticMarkup({ block : Block }))
-            .toBe('<span class="test"></span>');
-    });
+        expect(
+            ReactDOMServer.renderToStaticMarkup( React.createElement(
+                Block,
+                {}
+            ) )
+        ).toBe( '<span class="test"></span>' );
+    } );
 
-    it('should accept React\'s element in bem component json', function() {
-        var ReactComponent = react.createClass({
-                render : function() {
-                    return react.createElement('div', this.props);
+    it( 'should accept React\'s element in bem component json', function() {
+        var ReactComponent = React.createClass({
+            render : function() {
+                return React.createElement( 'input', this.props );
+            }
+        });
+
+        var BEMComponent = bemReact.createClass( {
+            render: function() {
+                return {
+                    block : 'test',
+                    tag : 'div',
+                    content: React.createElement( ReactComponent, this.props )
                 }
-            });
+            }
+        } )
 
-        expect(bemReact.renderToStaticMarkup({ block : ReactComponent, props : { disabled : true } }))
-            .toBe('<div disabled></div>');
+        expect(
+            ReactDOMServer.renderToStaticMarkup( React.createElement(
+                BEMComponent,
+                { disabled : true }
+            ) )
+        ).toBe( '<div class="test"><input disabled=""/></div>' );
     });
 
-    it('should throw error if block isn\'t specified in input', function() {
-        expect(function() {
-            bemReact.renderToStaticMarkup({ foo : 'bar' });
-        }).toThrowError('render: invalid bem component json');
+    it( 'should accept nested bem-json components', function() {
+        var BEMComponent1 = bemReact.createClass( {
+            render: function() {
+                return {
+                    block : 'link',
+                    tag : 'a',
+                    props: {
+                        href: 'https://ru.bem.info/'
+                    },
+                    content: 'b_'
+                }
+            }
+        } )
+
+        var BEMComponent2 = bemReact.createClass( {
+            render: function() {
+                return {
+                    block : 'test',
+                    tag : 'div',
+                    content: React.createElement( BEMComponent1, this.props )
+                }
+            }
+        } )
+
+        expect(
+            ReactDOMServer.renderToStaticMarkup( React.createElement(
+                BEMComponent2,
+                {}
+            ) )
+        ).toBe( '<div class="test"><a href="https://ru.bem.info/" class="link">b_</a></div>' );
+    });
+
+    it( 'should throw error if block isn\'t specified in input', function() {
+        var InvalidComponent = bemReact.createClass( {
+            render: function() {
+                return {
+                    foo: 'bat'
+                }
+            }
+        } )
+
+        expect( function() {
+            ReactDOMServer.renderToStaticMarkup( React.createElement(
+                InvalidComponent,
+                {}
+            ) )
+        } ).toThrowError( 'render: block should be specified in returned bemjson' );
     });
 });

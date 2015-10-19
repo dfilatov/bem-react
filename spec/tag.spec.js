@@ -1,20 +1,23 @@
-var bemReact = require('../lib/bemReact');
+var bemReact = require('../lib/bemReact'),
+    React = require('react'),
+    ReactDOMServer = require('react-dom/server');
 
 describe('tag', function() {
-    it('for block should be <div/> by default', function() {
+    it( 'for block should be <div/> by default', function() {
         var Block = bemReact.createClass({
-                render : function() {
-                    return {
-                        block : 'test'
-                    };
-                }
-            });
+            render : function() {
+                return {
+                    block : 'test'
+                };
+            }
+        });
 
-        expect(bemReact.renderToStaticMarkup({ block : Block }))
-            .toBe('<div class="test"></div>');
-    });
+        expect(
+            ReactDOMServer.renderToStaticMarkup( React.createElement( Block ))
+        ).toBe('<div class="test"></div>');
+    } );
 
-    it('should use "tag" field', function() {
+    it( 'should use "tag" field', function() {
         var Block = bemReact.createClass({
                 render : function() {
                     return {
@@ -24,7 +27,8 @@ describe('tag', function() {
                 }
             });
 
-        expect(bemReact.renderToStaticMarkup({ block : Block }))
-            .toBe('<span class="test"></span>');
-    });
+        expect(
+            ReactDOMServer.renderToStaticMarkup( React.createElement( Block ) )
+        ).toBe('<span class="test"></span>');
+    } );
 });
