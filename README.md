@@ -6,6 +6,11 @@ Its main goals:
   * provide ability to use some kind of bemjson in templates and during usage (instead of ugly jsx or plain js)
   * take over manipulation of css classes based on BEM (instead of annoying string concatenation or `React.addons.classSet` which is also clumsy for BEM-like css classes)
 
+## New in 0.1.0
+  * React@v0.14 support
+  * removed render API
+  * importing as ES6 module support
+
 ## Getting Started
 
 ### Installation
@@ -57,12 +62,29 @@ var Button = BemReact.createClass({
 ```
 
 ## Using a component
+
+#### With .jsx support
 ```js
-BemReact.render(
-    { block : Button, props : { size : 'xl', disabled : true, text : 'click me' } },
-    document.body);
-// inserts to body following html:
-// <button class="button button_size_xl button_disabled">click me</button>
+ReactDOM.render(
+    <Button size='xl' disabled text='click me' />,
+    document.body
+);
+```
+
+#### Without .jsx support
+```js
+ReactDOM.render(
+    React.createElement(
+        Button,
+        { size : 'xl', disabled : true, text : 'click me' } }
+    ),
+    document.body
+);
+```
+
+both inserts to body following html
+```html
+<button class="button button_size_xl button_disabled">click me</button>
 ```
 
 ### Composition of components
@@ -135,10 +157,4 @@ API is the similar to the original React's API:
 
 #### createClass(*Object* specification)
 
-#### render(*Object* componentJson, *DOMElement* container, [*Function* callback])
-
-#### renderToString(*Object* componentJson)
-
-#### renderToStaticMarkup(*Object* componentJson)
-
-#### unmountComponentAtNode(*DOMElement* container)
+for rendering your component use methods from `react-dom` (`render`, etc), `react-native` (`registerComponent`) and others
