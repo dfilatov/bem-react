@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "jasmine",
-    "build-example": "browserify example/index.js > example/index.build.js"
+    "test": "node_modules/jasmine/bin/jasmine.js",
+    "build-example": "node_modules/browserify/bin/cmd.js example/index.js > example/index.build.js"
   }
 }
